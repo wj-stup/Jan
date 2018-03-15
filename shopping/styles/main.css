@@ -20,6 +20,14 @@
 	left: 198px;
 	top: 20px;
 }
+#inputSearch {
+	border: 1px solid #BABEBF;
+	color: #999999;
+	font-size: 14px;
+	height: 17px;
+	padding: 3px 6px 5px 6px;
+	width: 200px;
+}
 #skin {
 	float: right;
 	margin: 10px;
