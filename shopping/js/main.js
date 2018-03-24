@@ -133,9 +133,50 @@ $(document).ready(function (){
 			var spanHtml = '<span style="position:absolute;top:0;left:5px;width:'+img_w+'px;height:'+img_h+'px;" class="imageMask"></span>';
 			$(spanHtml).appendTo(this);
 		});
-		$("#jnBrandList").delegate(".imageMask", "hover", function(){
-			alert();
-			$(this).toggleClass("imageOver");
+		$("#jnBrandList").find(".imageMask").hover(function(){
+			$(this).addClass("imageOver");
+		},function (){
+			$(this).removeClass("imageOver");
+		});
+	})();
+
+	//产品图片放大镜效果
+	(function (){
+		$('.jqzoom').jqzoom({
+			zoomType: 'standard',
+			lens: true,
+			preloadImages: false,
+			alwaysOn: false,
+			zoomWidth: 340,
+			zoomHeight: 340,
+			xOffset: 10,
+			yOffset: 0,
+			position: 'right'
+		});
+	})();
+
+	//单击产品小图片切换大图
+	(function (){
+		$('#jnProitem ul.imgList li a').bind('click', function (){
+			var imgSrc = $(this).find('img').attr('src');
+			var i = imgSrc.lastIndexOf('.');
+			var unit = imgSrc.substring(0,i);
+			var imgSrc_big = unit+'_big.jpg';
+			$('#thickImg').attr('href',imgSrc_big);
+		});
+	})();
+
+	//产品属性介绍之类的选项卡
+	(function (){
+		var $div_li = $('div.tab_menu ul li');
+		$div_li.click(function (){
+			$(this).addClass('selected').siblings().removeClass('selected');
+			var index = $div_li.index(this);
+			$('div.tab_box>div').eq(index).show().siblings().hide();
+		}).hover(function (){
+			$(this).addClass('hover');
+		},function (){	
+			$(this).removeClass('hover');
 		});
 	})();
 });
